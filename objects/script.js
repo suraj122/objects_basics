@@ -1,86 +1,64 @@
-'use strict';
+"use strict";
 
-let user = new Object(); //"object constructor" syntax
-let user = {}; //"object literal" syntax
+// Hello Object
+let user = {};
 
-let user = {        // an object
-	name: "John",     // key "name" with value "John" 
-	age: "30",         // key "age" with value "30"
-};
+user.name = "John";
+user.surname = "Smith";
+
+user.name = "Pete";
+delete user.name;
 
 alert(user.name);
-alert(user.age);
 
-user.isAdmin = true;
+// Check for emptiness
 
-delete user.age;
-user["likes bird"] = true;
-alert(user["likes bird"]);
-
-let currentUser = {
-	name: "Joseph",
-	age: 40,
-}
-let key = prompt("what do you want to know about user?", "name");
-
-alert(currentUser[key]);
-
-// Computed properties
-
-let fruit = prompt("which fruit you want to buy?", "apple");
-
-let bag = {
-	[fruit + 'Computers']: 5,
+function isEmpty(obj) {
+  let count = 0;
+  for (let key in obj) {
+    count++;
+  }
+  if (count == 0) {
+    return true;
+  } else return false;
 }
 
-alert(bag.orangeComputers);
+let schdule = {};
+console.log(isEmpty(schdule));
 
-let obj = {};
-obj._proto_ = 5;
-alert(obj.__proto__);
+// Sum object properties
 
-// property value shorthand
-function makeUser(name, age) {
-	return {
-		// name: name,
-		// age: age,
-		name,
-		age,
-	};
+function objSum(obj) {
+  let sum = 0;
+  for (let key in obj) {
+    sum += obj[key];
+  }
+  return sum;
 }
 
-let user = makeUser("John", 40);
-let user = {
-	name,
-	age: 30,
-}
-alert(user.age);
-
-// Existence check
-// let person = {};
-
-
-let person = {name: "John", age: "30"};
-
-alert("age" in person);
-alert("blabla" in person);
-alert(person.noSuchProperty === undefined );
-
-let key = "age";
-alert(key in person);
-
-let obj = {
-	test: undefined
+let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130
 };
 
-alert(obj.test);
+console.log(objSum(salaries));
 
-alert( "test" in obj);
+// Multiply Numeric Obj properties by 2
 
+function multiplyNumeric(obj) {
+  for (let key in obj) {
+    if (typeof obj[key] == "number") {
+      obj[key] *= 2;
+    }
+  }
+  return obj;
+}
 
+let menu = {
+  width: 200,
+  height: 300,
+  title: "My menu"
+};
 
-
-
-
-
-
+console.log(multiplyNumeric(menu));
